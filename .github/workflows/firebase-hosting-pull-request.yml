@@ -14,3 +14,4 @@ jobs:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_HRTOOLS_32D4F }}"
           projectId: hrtools-32d4f
+          channelId: live
