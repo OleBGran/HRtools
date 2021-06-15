@@ -1,15 +1,35 @@
 import React from "react";
+import { FirebaseDatabaseMutation } from "@react-firebase/database";
+import {TextArea} from '@adobe/react-spectrum'
+import TextField from '@material-ui/core/TextField';
+import firebase from "firebase/app";
+import get from "lodash/get";
+import set from "lodash/set";
 
 const Report = () => {
 
-    const [inputText, setInputText] = React.useState("");
+    const textFieldRef = React.useRef("");
     return (
         <div>
-            {/*<input type="text" value={inputText} onChange={e => setInputText(e.target.value)} />*/}
-            <textarea style={{resize: "none"}} rows="10" cols="25" name="description" onChange={e => setInputText(e.target.value)}></textarea><br/>
+            {/* <input type="text" value={inputText} onChange={e => setInputText(e.target.value)} /> */}
+            <TextField multiline label="Beskriv situasjonen din" variant="outlined"
+                rows={4} name="description" inputRef={textFieldRef}/><br/>
             
-            <button type="button" onClick={() => console.log(inputText)}> Submit</button><br/>
-            <br/><button onClick={() => console.log("Done")}>Done</button>
+            <FirebaseDatabaseMutation type="push" path={"reports/"}>
+                {({ runMutation }) => {
+                    return (
+                        <div>
+                            <button
+                                onClick={ async e=> {e.preventDefault();
+                                    const text = get(textFieldRef, "current.value", "");
+                                    await runMutation({ text: text });
+                                    set(textFieldRef, "current.value", "");}}>
+                                    Push
+                            </button>
+                        </div>
+                    );
+                }}
+            </FirebaseDatabaseMutation>
         </div>
     )
 }
