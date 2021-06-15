@@ -1,8 +1,6 @@
 import React from "react";
 import { FirebaseDatabaseMutation } from "@react-firebase/database";
-import {TextArea} from '@adobe/react-spectrum'
 import TextField from '@material-ui/core/TextField';
-import firebase from "firebase/app";
 import get from "lodash/get";
 import set from "lodash/set";
 
