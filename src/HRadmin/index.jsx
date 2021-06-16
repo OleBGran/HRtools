@@ -63,7 +63,3 @@ const Admin = () => {
 };
 
 export default Admin;
-
-{
-  /*{d.loading || !d.value ? <div> Loading... </div> : <div> {Object.keys(d.value).map(key => (<div key={key}> {d.value[key].text} </div>))}</div>}*/
-}
